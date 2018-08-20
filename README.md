@@ -9,6 +9,9 @@ Simply download from the [releases page](https://github.com/lordofkhaos/SCPSL_Se
 
 
 ### Description
-**Create Logkillers:** Creates files that delete old log files. Use `run_logkiller.bat` to run them.
-**Run Logkillers:** Runs the log killers created with `create_logkillers.bat`.
-**Find SteamIds:** Finds any and all steamid64's in your MultiAdmin logs and outputs them to a `.csv` file in the `tools` directory. NOTE: It is not recommended to open `results.csv` with Excel as it *will* 
+* **Autorun:** Creates a task for automatically running the files that makes sense.
+* **Create Logkillers:** Creates files that delete old log files. Use `run_logkiller` to run them.
+* **Run Logkillers:** Runs the log killers created with `create_logkillers`.
+* **Find SteamIds:** Finds any and all steamid64's in your MultiAdmin logs and outputs them to a `.csv` file in the `tools` directory. 
+#
+NOTE: It is not recommended to open `results.csv` with Excel as it *will* 
