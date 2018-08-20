@@ -1,6 +1,10 @@
 # SCPSL_Server_Tools
 A collection of batchfiles designed to assist in the running of an SCPSL server
 
+## Manual Installation
+Go into your steam server install directory, and alongside the executable, create a folder named `tools`. Then download or copy each tool you want.
+
+## Automatic Installation
 Simply download from the [releases page](https://github.com/lordofkhaos/SCPSL_Server_Tools/releases/latest), extract a `tools` (doesnt matter which) then put the extracted folder to your main install directory. Then you can run each file from within the `tools` folder.
 
 **Create Logkillers:** Creates files that delete old log files. Use `run_logkiller.bat` to run them.
