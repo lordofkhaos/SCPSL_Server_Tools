@@ -59,7 +59,9 @@ goto Parse
 :Parse
 cd ..\..\..\tools
 echo Trimming results...
-for /f "tokens=7 delims= " %%a in (pre-results.txt) do (@echo ^' & @echo %%a >> results.csv)
+for /f "tokens=7 delims= " %%a in (pre-results.txt) do (
+    @echo <NUL set /p="^'" & @echo %%a >> results.csv
+    )
 echo Done!
 goto End
 
