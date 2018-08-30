@@ -14,4 +14,5 @@ Simply download from the [releases page](https://github.com/lordofkhaos/SCPSL_Se
 * **Run Logkillers:** Runs the log killers created with `create_logkillers`.
 * **Find SteamIds:** Finds any and all steamid64's in your MultiAdmin logs and outputs them to a `.csv` file in the `tools` directory. 
 #
-NOTE: It is not recommended to open `results.csv` with Excel as it *will* mess up the steamids, since it doesn't like really long numbers
+Actually, with the latest update to `find_steamids.bat`, you should be able to open up `results.csv` in Excel just fine
+~~NOTE: It is not recommended to open `results.csv` with Excel as it *will* mess up the steamids, since it doesn't like really long numbers~~
