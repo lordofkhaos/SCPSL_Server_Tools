@@ -43,6 +43,21 @@ def delscp():
 		for subdir in result:
 			if os.path.exists("$scp_logkiller.bat"):
 				os.remove("$scp_logkiller.bat")
+	else:
+		if os.path.exists("logs"):
+			os.chdir("logs")
+			filenames = os.listdir(".")
+			result = []
+			for filename in filenames:
+				if os.path.isdir(os.path.join(os.path.abspath("."), filename)):
+				result.append(filename)
+			for subdir in result:
+				if os.path.exists("$scp_logkiller.bat"):
+					os.remove("$scp_logkiller.bat")
+				elif os.path.exists("_scp_logkiller.sh"):
+					os.remove("_scp_logkiller.sh")
+		else:
+			print("Error! Logs folder not detected!")
 
 def delma():
 	os.chdir(scp)
@@ -56,8 +71,25 @@ def delma():
 		for subdir in result:
 			if os.path.exists("$ma_logkiller.bat"):
 				os.remove("$ma_logkiller.bat")
+			elif os.path.exists("_ma_logkiller.sh"):
+				os.remove("_ma_logkiller.sh")
+	else:
+		if os.path.exists("logs"):
+			os.chdir("logs")
+			filenames = os.listdir(".")
+			result = []
+			for filename in filenames:
+				if os.path.isdir(os.path.join(os.path.abspath("."), filename)):
+				result.append(filename)
+			for subdir in result:
+				if os.path.exists("$ma_logkiller.bat"):
+					os.remove("$ma_logkiller.bat")
+				elif os.path.exists("_ma_logkiller.sh"):
+					os.remove("_ma_logkiller.sh")
+		else:
+			print("Error! Logs folder not detected!")
 
-def delround():
+def delround(): 
 	if os.name == 'nt':
 		os.chdir(os.getenv('APPDATA'))
 		if os.path.exists("SCP Secret Laboratory\ServerLogs"):
@@ -72,7 +104,15 @@ def delround():
 					os.remove("$round_logkiller.bat")
 	else:
 		os.chdir(os.getenv('HOME'))
-		os.chdir(".config/SCP Secret Laboratory")
+		os.chdir(".config/SCP Secret Laboratory/ServerLogs")
+		filenames = os.listdir(".")
+		result = []
+		for filename in filenames:
+			if os.path.isdir(os.path.join(os.path.abspath("."), filename)):
+			result.append(filename)
+		for subdir in result:
+			if os.path.exists("_round_logkiller.sh"):
+				os.remove("_round_logkiller.sh")
 
 def delat():
 	if os.name == 'nt':
@@ -87,6 +127,18 @@ def delat():
 			for subdir in result:
 				if os.path.exists("$at_logkiller.bat"):
 					os.remove("$at_logkiller.bat")
+	else:
+		os.chdir(os.getenv('HOME'))
+		os.chdir(".config/SCP Secret Laboratory/AdminToolbox/ServerLogs")
+		filenames = os.listdir(".")
+		result = []
+		for filename in filenames:
+			if os.path.isdir(os.path.join(os.path.abspath("."), filename)):
+			result.append(filename)
+		for subdir in result:
+			if os.path.exists("_at_logkiller.sh"):
+				os.remove("_at_logkiller.sh")
+
 # Delete logs
 def remscp(days):
 	os.chdir(scp)
@@ -109,6 +161,27 @@ def remscp(days):
 					remove(file)
 			time.sleep(0.1)
 			printProgressBar(i + 1, l, prefix = "Progress:", suffix = "Complete", length = 50)
+	else:
+		if os.path.exists("logs"):
+			os.chdir("logs")
+			filenames = os.listdir(".")
+			result = []
+			for filename in filenames:
+				if os.path.isdir(os.path.join(os.path.abspath("."), filename)):
+				result.append(filename)
+			l = len(result)
+			printProgressBar(0, l, prefix = "Progress:", suffix = "Complete", length = 50)
+			for i, subdir in enumerate(result):
+				for file in glob.glob("*SCP_output_log.txt"):
+					time_in_secs = time.time() - (days * 24 * 60 * 60)
+					stat = os.stat(file)
+
+					if stat.st_mtime <= time_in_secs:
+						remove(file)
+				time.sleep(0.1)
+				printProgressBar(i + 1, l, prefix = "Progress:", suffix = "Complete", length = 50)
+		else:
+			print("Error! Logs folder not detected!")
 
 def remma(days):
 	os.chdir(scp)
@@ -131,6 +204,27 @@ def remma(days):
 					remove(file)
 			time.sleep(0.1)
 			printProgressBar(i + 1, l, prefix = "Progress:", suffix = "Complete", length = 50)
+	else:
+		if os.path.exists("logs"):
+			os.chdir("logs")
+			filenames = os.listdir(".")
+			result = []
+			for filename in filenames:
+				if os.path.isdir(os.path.join(os.path.abspath("."), filename)):
+				result.append(filename)
+			l = len(result)
+			printProgressBar(0, l, prefix = "Progress:", suffix = "Complete", length = 50)
+			for i, subdir in enumerate(result):
+				for file in glob.glob("*MA_output_log.txt"):
+					time_in_secs = time.time() - (days * 24 * 60 * 60)
+					stat = os.stat(file)
+
+					if stat.st_mtime <= time_in_secs:
+						remove(file)
+				time.sleep(0.1)
+				printProgressBar(i + 1, l, prefix = "Progress:", suffix = "Complete", length = 50)
+		else:
+			print("Error! Logs folder not detected!")
 
 def remround(days):
 	if os.name == 'nt':
@@ -151,11 +245,26 @@ def remround(days):
 					stat = os.stat(file)
 					if stat.st_mtime <= time_in_secs:
 						remove(file)
-			time.sleep(0.1)
-			printProgressBar(i + 1, l, prefix = "Progress:", suffix = "Complete", length = 50)
+				time.sleep(0.1)
+				printProgressBar(i + 1, l, prefix = "Progress:", suffix = "Complete", length = 50)
 	else:
 		os.chdir(os.getenv('HOME'))
-		os.chdir(".config/SCP Secret Laboratory")
+		os.chdir(".config/SCP Secret Laboratory/ServerLogs")
+		filenames = os.listdir(".")
+		result = []
+		for filename in filenames:
+			if os.path.isdir(os.path.join(os.path.abspath("."), filename)):
+				result.append(filename)
+		l = len(result)
+		printProgressBar(0, l, prefix = "Progress:", suffix = "Complete", length = 50)
+		for i, subdir in enumerate(result):
+			for file in glob.glob("*.txt"):
+				time_in_secs = time.time() - (days * 24 * 60 * 60)
+				stat = os.stat(file)
+				if stat.st_mtime <= time_in_secs:
+					remove(file)
+			time.sleep(0.1)
+			printProgressBar(i + 1, l, prefix = "Progress", suffix = "Complete", length = 50)
 
 def remat(days):
 	if os.name == 'nt':
@@ -179,6 +288,24 @@ def remat(days):
 							remove(file)
 				time.sleep(0.1)
 				printProgressBar(i + 1, l, prefix = "Progress:", suffix = "Complete", length = 50)
+	else:
+		os.chdir(os.getenv('HOME'))
+		os.chdir(".config/SCP Secret Laboratory/AdminToolbox/ServerLogs")
+		filenames = os.listdir(".")
+		result = []
+		for filename in filenames:
+			if os.path.isdir(os.path.join(os.path.abspath("."), filename)):
+				result.append(filename)
+		l = len(result)
+		printProgressBar(0, l, prefix = "Progress:", suffix = "Complete", length = 50)
+		for i, subdir in enumerate(result):
+			for file in glob.glob("*.txt"):
+				time_in_secs = time.time() - (days * 24 * 60 * 60)
+				stat = os.stat(file)
+				if stat.st_mtime <= time_in_secs:
+					remove(file)
+			time.sleep(0.1)
+			printProgressBar(i + 1, l, prefix = "Progress", suffix = "Complete", length = 50)
 
 def main():
 	clear()
